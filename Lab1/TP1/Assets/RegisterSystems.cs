@@ -8,9 +8,11 @@ public class RegisterSystems
         var toRegister = new List<ISystem>();
         
         // Add your systems here
-        var SpawnSystem = new SpawnSystem();
+        var spawnSystem = new SpawnSystem();
+        var movementSystem = new MovementSystem();
 
-        toRegister.Add(SpawnSystem);
+        toRegister.Add(spawnSystem);
+        toRegister.Add(movementSystem);
 
         return toRegister;
     }
