@@ -6,3 +6,4 @@ Laboratory for the LOG8715 - Video Game Architecture course at Polytechnique Mon
 - Circle spawner
 - Circles have velocities and positions
 - Circle can be static
+- Circle bounce off the edges

@@ -10,9 +10,11 @@ public class RegisterSystems
         // Add your systems here
         var spawnSystem = new SpawnSystem();
         var movementSystem = new MovementSystem();
+        var boundaryCollision = new BoundaryCollision();
 
         toRegister.Add(spawnSystem);
         toRegister.Add(movementSystem);
+        toRegister.Add(boundaryCollision);
 
         return toRegister;
     }
