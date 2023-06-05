@@ -50,7 +50,7 @@ public class CircleCollisionSystem : ISystem
                                 World.SetComponentData<SizeComponent>(entityId2, sizeComponent2);
 
                                 manager.UpdateShapeSize(entityId1, sizeComponent1.Size);
-                                manager.UpdateShapeSize(entityId1, sizeComponent2.Size);
+                                manager.UpdateShapeSize(entityId2, sizeComponent2.Size);
                             }
                         }
                         
