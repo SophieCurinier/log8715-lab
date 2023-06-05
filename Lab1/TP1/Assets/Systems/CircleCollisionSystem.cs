@@ -66,6 +66,17 @@ public class CircleCollisionSystem : ISystem
 
                         manager.UpdateShapePosition(entityId1, positionComponent1.Position);
                         manager.UpdateShapePosition(entityId2, positionComponent2.Position);
+
+                        if (sizeComponent1.Size == 0)
+                        {
+                            manager.DestroyShape(entityId1);
+                            World.DeleteEntity(entityId1);
+                        }
+                        else if (sizeComponent2.Size == 0)
+                        {
+                            manager.DestroyShape(entityId2);
+                            World.DeleteEntity(entityId2);
+                        }
                     }
                     else 
                     {
