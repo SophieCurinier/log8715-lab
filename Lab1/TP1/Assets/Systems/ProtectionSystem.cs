@@ -29,6 +29,7 @@ public class ProtectionSystem : ISystem
         if (protectionComponent.ProtectionDuration > 0)
         {
             protectionComponent.ProtectionDuration = Mathf.Max(protectionComponent.ProtectionDuration - Time.deltaTime, 0);
+            World.SetComponentData<ProtectionComponent>(entityId, protectionComponent);
         } 
         else if ((protectionComponent.ProtectionDuration == 0) && (protectionComponent.ProtectionCooldown > 0))
         {
@@ -37,6 +38,10 @@ public class ProtectionSystem : ISystem
             if (protectionComponent.ProtectionCooldown == 0)
             {
                 World.DeleteComponent<ProtectionComponent>(entityId);
+            }
+            else
+            {
+                World.SetComponentData<ProtectionComponent>(entityId, protectionComponent);
             }
         }
     }
