@@ -14,7 +14,7 @@ public class ExplosionSystem : ISystem
         
         World.ForEach<SizeComponent>((uint entityId, SizeComponent sizeComponent) => 
         {
-            if (sizeComponent.Size == explosionSize)
+            if (sizeComponent.Size >= explosionSize)
             {
                 PositionComponent positionComponent = World.GetComponent<PositionComponent>(entityId);
                 VelocityComponent velocityComponent = World.GetComponent<VelocityComponent>(entityId);
