@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BoundaryCollision : ISystem
+public class BoundaryCollisionSystem : ISystem
 {
-    public BoundaryCollision() { Name = "BoundaryCollision"; }
+    public BoundaryCollisionSystem() { Name = "BoundaryCollision"; }
 
     public string Name { get; }
 

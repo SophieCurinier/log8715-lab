@@ -10,12 +10,12 @@ public class RegisterSystems
         // Add your systems here
         var spawnSystem = new SpawnSystem();
         var movementSystem = new MovementSystem();
-        var boundaryCollision = new BoundaryCollision();
+        var boundaryCollisionSystem = new BoundaryCollisionSystem();
         var circleCollisionSystem = new CircleCollisionSystem();
 
         toRegister.Add(spawnSystem);
         toRegister.Add(movementSystem);
-        toRegister.Add(boundaryCollision);
+        toRegister.Add(boundaryCollisionSystem);
         toRegister.Add(circleCollisionSystem);
 
         return toRegister;
