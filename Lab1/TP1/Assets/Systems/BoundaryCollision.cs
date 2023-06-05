@@ -21,14 +21,13 @@ public class BoundaryCollision : ISystem
                 PositionComponent positionComponent = World.GetComponent<PositionComponent>(entityId);
                 SizeComponent sizeComponent = World.GetComponent<SizeComponent>(entityId);
 
-                bool outOfX = (Mathf.Abs((positionComponent.Position.x)) >= Mathf.Abs(screenWidth-sizeComponent.Size)*0.5);
-                bool outOfY = (Mathf.Abs((positionComponent.Position.y)) >= Mathf.Abs(screenHeight-sizeComponent.Size)*0.5);
+                bool outOfX = ((positionComponent.Position.x-(float)sizeComponent.Size/2 < -screenWidth/2f) || (positionComponent.Position.x+(float)sizeComponent.Size/2 > screenWidth/2f));
+                bool outOfY = ((positionComponent.Position.y-(float)sizeComponent.Size/2 < -screenHeight/2f) || (positionComponent.Position.y+(float)sizeComponent.Size/2 > screenHeight/2f));
 
                 if (outOfX)
                 {
                     velocityComponent.Velocity.x *= -1;
                     World.SetComponentData<VelocityComponent>(entityId, velocityComponent);
-
                 }
                 
                 if (outOfY)
