@@ -137,7 +137,7 @@ public class CircleCollisionSystem : ISystem
 
                         positionComponent2.Position = collisionResult.position2;
                         velocityComponent2.Velocity = collisionResult.velocity2;
-                        UpdatePositionAndVelocity(entityId1, positionComponent1, velocityComponent1, manager);
+                        UpdatePositionAndVelocity(entityId2, positionComponent2, velocityComponent2, manager);
 
                         if (isNotAlreadyInCollision)
                         {
