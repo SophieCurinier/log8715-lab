@@ -7,6 +7,29 @@ public class ExplosionSystem : ISystem
 
     public string Name { get; }
 
+    private uint createSon(int size, Vector2 position, Vector2 velocity, float angle, ECSManager manager)
+    {
+        uint entitySon = World.CreateEntity();
+
+        SizeComponent sizeSonComponent;
+        sizeSonComponent.Size = size / 2;
+        World.AddComponent<SizeComponent>(entitySon, sizeSonComponent);
+
+        PositionComponent positionSonComponent;
+        positionSonComponent.Position.x = position.x + (int)Mathf.Pow(-1, entitySon)*size/2*Mathf.Cos(angle);
+        positionSonComponent.Position.y = position.y + size/2*Mathf.Sin(angle);
+        World.AddComponent<PositionComponent>(entitySon, positionSonComponent);
+
+        VelocityComponent velocitySonComponent;
+        velocitySonComponent.Velocity = (int)Mathf.Pow(-1, entitySon)*velocity;
+        World.AddComponent<VelocityComponent>(entitySon, velocitySonComponent);
+
+        manager.CreateShape(entitySon, sizeSonComponent.Size);
+        manager.UpdateShapePosition(entitySon, positionSonComponent.Position);
+
+        return entitySon;
+    }
+
     public void UpdateSystem()
     {
         var manager = ECSManager.Instance;
@@ -22,41 +45,9 @@ public class ExplosionSystem : ISystem
                 // Calcul entityId circle velocity orientation
                 float angle = Mathf.Atan2(velocityComponent.Velocity.y, velocityComponent.Velocity.x);
                 
-                // Add Son 1
-                uint entitySon1 = World.CreateEntity();
-
-                SizeComponent sizeSonComponent;
-                sizeSonComponent.Size = sizeComponent.Size / 2;
-                World.AddComponent<SizeComponent>(entitySon1, sizeSonComponent);
-
-                PositionComponent positionSonComponent1;
-                positionSonComponent1.Position.x = positionComponent.Position.x + sizeComponent.Size/2*Mathf.Cos(angle);
-                positionSonComponent1.Position.y = positionComponent.Position.y + sizeComponent.Size/2*Mathf.Sin(angle);
-                World.AddComponent<PositionComponent>(entitySon1, positionSonComponent1);
-
-                VelocityComponent velocitySonComponent1;
-                velocitySonComponent1.Velocity = velocityComponent.Velocity;
-                World.AddComponent<VelocityComponent>(entitySon1, velocitySonComponent1);
-
-                manager.CreateShape(entitySon1, sizeSonComponent.Size);
-                manager.UpdateShapePosition(entitySon1, positionSonComponent1.Position);
-
-                // Add Son 2
-                uint entitySon2 = World.CreateEntity();
-
-                World.AddComponent<SizeComponent>(entitySon2, sizeSonComponent);
-
-                PositionComponent positionSonComponent2;
-                positionSonComponent2.Position.x = positionComponent.Position.x - sizeComponent.Size/2*Mathf.Cos(angle);
-                positionSonComponent2.Position.y = positionComponent.Position.y - sizeComponent.Size/2*Mathf.Sin(angle);
-                World.AddComponent<PositionComponent>(entitySon2, positionSonComponent2);
-
-                VelocityComponent velocitySonComponent2;
-                velocitySonComponent2.Velocity = velocityComponent.Velocity * -1;
-                World.AddComponent<VelocityComponent>(entitySon2, velocitySonComponent2);
-
-                manager.CreateShape(entitySon2, sizeSonComponent.Size);
-                manager.UpdateShapePosition(entitySon2, positionSonComponent2.Position);
+                uint entitySon1 = createSon(sizeComponent.Size, positionComponent.Position, velocityComponent.Velocity, angle, manager);
+                
+                uint entitySon2 = createSon(sizeComponent.Size, positionComponent.Position, velocityComponent.Velocity, angle, manager);
                 
                 // Destroy Father
                 manager.DestroyShape(entityId);
