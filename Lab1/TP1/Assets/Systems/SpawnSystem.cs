@@ -8,6 +8,17 @@ public class SpawnSystem : ISystem
 
     private bool _initialized = false;
 
+    private void HandleStatic(uint entityId, Vector2 velocity)
+    {
+        if ((velocity.x == 0) && (velocity.y == 0))
+        {
+            IsStaticTag isStaticTag ;
+            World.AddComponent<IsStaticTag>(entityId, isStaticTag);
+        }
+
+        return;
+    }
+
     public void UpdateSystem()
     {
         if (_initialized)
@@ -33,6 +44,8 @@ public class SpawnSystem : ISystem
             VelocityComponent velocityComponent;
             velocityComponent.Velocity = instance.initialVelocity;
             World.AddComponent<VelocityComponent>(entity, velocityComponent);
+
+            HandleStatic(entity, velocityComponent.Velocity);
 
             manager.CreateShape(entity, sizeComponent.Size);
             manager.UpdateShapePosition(entity, positionComponent.Position);
