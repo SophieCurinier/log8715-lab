@@ -13,16 +13,18 @@ public class RegisterSystems
         var boundaryCollisionSystem = new BoundaryCollisionSystem();
         var circleCollisionSystem = new CircleCollisionSystem();
         var explosionSystem = new ExplosionSystem();
-        var ProtectionSystem = new ProtectionSystem();
-        var ColorSystem = new ColorSystem();
+        var protectionSystem = new ProtectionSystem();
+        var colorSystem = new ColorSystem();
+        var inputSystem = new InputSystem();
 
         toRegister.Add(spawnSystem);
         toRegister.Add(movementSystem);
         toRegister.Add(boundaryCollisionSystem);
         toRegister.Add(circleCollisionSystem);
         toRegister.Add(explosionSystem);
-        toRegister.Add(ProtectionSystem);
-        toRegister.Add(ColorSystem);
+        toRegister.Add(protectionSystem);
+        toRegister.Add(colorSystem);
+        toRegister.Add(inputSystem);
 
         return toRegister;
     }
