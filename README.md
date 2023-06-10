@@ -27,3 +27,37 @@ The application provides the following features:
 - Protection Mechanism: Circles with a size equal to or smaller than a value defined in the configuration can become randomly protected. The protected size is always smaller than the explosion size. At each frame, a circle with a size below the protected size has a probability defined in the configuration to become protected. A protected circle cannot change its size. Smaller circles colliding with the protected circle do not change their size. Larger circles colliding with the protected circle decrease their size by 1. The protection state of a circle expires after a delay defined in the configuration. After being protected, a circle cannot become protected again until a cooldown defined in the configuration has elapsed.
 
 Please refer to the configuration file for customizable values and settings related to the simulation.
+
+### Implementation Details
+#### Components
+
+The simulation utilizes several components to represent different aspects of the circles:
+
+- `Position`: Stores the position of a circle on the screen.
+- `Size`: Represents the size of a circle.
+- `Color`: Determines the color of a circle based on its state.
+- `Protection`: Indicates whether a circle is currently protected.
+- `Rewind`: Stores the historical data of a circle for time rewind functionality.
+- `Velocity`: Represents the velocity of a dynamic circle.
+
+#### Tags
+
+Tags are used to mark specific entities with certain characteristics or states:
+
+- `IsInCollision`: Indicates that a circle is involved in a collision with another circle.
+- `IsRewind`: Marks the entities that are eligible for time rewind.
+- `IsClicked`: Indicates that a dynamic circle has been clicked.
+- `IsStatic`: Marks static circles that do not move.
+
+#### Systems
+
+The simulation employs various systems to handle different functionalities:
+
+- `BoundaryCollision`: Manages the collisions of circles with the screen boundaries.
+- `CircleCollision`: Handles the collisions between circles, including size adjustments and bouncing behavior.
+- `Color`: Manages the color of circles based on their states.
+- `Explosion`: Handles the explosion of circles when they reach a specified size.
+- `Input`: Handles user input, including mouse clicks and spacebar presses.
+- `Movement`: Manages the movement of dynamic circles based on their velocity.
+- `Rewind`: Facilitates the time rewind functionality by storing and retrieving historical data of entities.
+- `Spawn`: Controls the spawning of new circles in the simulation.
