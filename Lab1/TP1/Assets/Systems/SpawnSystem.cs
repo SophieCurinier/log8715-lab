@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class SpawnSystem : ISystem
 {
@@ -44,6 +47,10 @@ public class SpawnSystem : ISystem
             VelocityComponent velocityComponent;
             velocityComponent.Velocity = instance.initialVelocity;
             World.AddComponent<VelocityComponent>(entity, velocityComponent);
+
+            RewindComponent rewindComponent;
+            rewindComponent.RecordedData = new Dictionary<float, RewindArchetype>();
+            World.AddComponent<RewindComponent>(entity, rewindComponent);
 
             HandleStatic(entity, velocityComponent.Velocity);
 

@@ -16,6 +16,7 @@ public class RegisterSystems
         var protectionSystem = new ProtectionSystem();
         var colorSystem = new ColorSystem();
         var inputSystem = new InputSystem();
+        var rewindSystem = new RewindSystem();
 
         toRegister.Add(spawnSystem);
         toRegister.Add(movementSystem);
@@ -25,6 +26,7 @@ public class RegisterSystems
         toRegister.Add(protectionSystem);
         toRegister.Add(colorSystem);
         toRegister.Add(inputSystem);
+        toRegister.Add(rewindSystem);
 
         return toRegister;
     }
