@@ -47,6 +47,7 @@ public class InputSystem : ISystem
             {
                 World.ForEach<IsRewindComponent>((uint entityId, IsRewindComponent isRewindComponent) =>
                 {
+                    Debug.Log("Rewind cooldown : " + isRewindComponent.RewindDuration);
                     isRewindComponent.RewindDuration = 0f;
                     World.SetComponentData<IsRewindComponent>(entityId, isRewindComponent);
                 });
